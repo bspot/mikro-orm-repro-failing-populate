@@ -1,0 +1,224 @@
+{
+  "namespaces": [],
+  "tables": [
+    {
+      "columns": {
+        "pk_one": {
+          "name": "pk_one",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "pk_two": {
+          "name": "pk_two",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "type": {
+          "name": "type",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        }
+      },
+      "name": "main",
+      "indexes": [
+        {
+          "keyName": "PRIMARY",
+          "columnNames": [
+            "pk_one",
+            "pk_two"
+          ],
+          "composite": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {}
+    },
+    {
+      "columns": {
+        "main_pk_one": {
+          "name": "main_pk_one",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "main_pk_two": {
+          "name": "main_pk_two",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "id": {
+          "name": "id",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "bar": {
+          "name": "bar",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        }
+      },
+      "name": "dependent",
+      "indexes": [
+        {
+          "keyName": "dependent_main_pk_one_main_pk_two_index",
+          "columnNames": [
+            "main_pk_one",
+            "main_pk_two"
+          ],
+          "composite": true,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "keyName": "PRIMARY",
+          "columnNames": [
+            "main_pk_one",
+            "main_pk_two",
+            "id"
+          ],
+          "composite": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "dependent_main_pk_one_main_pk_two_foreign": {
+          "constraintName": "dependent_main_pk_one_main_pk_two_foreign",
+          "columnNames": [
+            "main_pk_one",
+            "main_pk_two"
+          ],
+          "localTableName": "dependent",
+          "referencedColumnNames": [
+            "pk_one",
+            "pk_two"
+          ],
+          "referencedTableName": "main",
+          "updateRule": "cascade"
+        }
+      }
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "int",
+          "unsigned": true,
+          "autoincrement": true,
+          "primary": true,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "dependent_main_pk_one": {
+          "name": "dependent_main_pk_one",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "dependent_main_pk_two": {
+          "name": "dependent_main_pk_two",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "dependent_id": {
+          "name": "dependent_id",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "foo": {
+          "name": "foo",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        }
+      },
+      "name": "log_entry",
+      "indexes": [
+        {
+          "keyName": "log_entry_dependent_main_pk_one_dependent_main_pk_t_8dac1_index",
+          "columnNames": [
+            "dependent_main_pk_one",
+            "dependent_main_pk_two",
+            "dependent_id"
+          ],
+          "composite": true,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "keyName": "PRIMARY",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "log_entry_dependent_main_pk_one_dependent_main_pk_65b74_foreign": {
+          "constraintName": "log_entry_dependent_main_pk_one_dependent_main_pk_65b74_foreign",
+          "columnNames": [
+            "dependent_main_pk_one",
+            "dependent_main_pk_two",
+            "dependent_id"
+          ],
+          "localTableName": "log_entry",
+          "referencedColumnNames": [
+            "main_pk_one",
+            "main_pk_two",
+            "id"
+          ],
+          "referencedTableName": "dependent",
+          "deleteRule": "cascade",
+          "updateRule": "cascade"
+        }
+      }
+    }
+  ]
+}
